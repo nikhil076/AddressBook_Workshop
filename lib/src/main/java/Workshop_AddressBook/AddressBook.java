@@ -87,4 +87,20 @@ public class AddressBook implements AddressBook_Interface {
 			}
 		}
 	}
+	
+	/**
+     *performing the operation for delete contact from the existing contact.
+     *
+     */
+    @Override
+    public void deleteContact(String firstname) {
+        for (int i = 0; i < contact.size(); i++) {
+            if(contact.get(i).getFirstname().equalsIgnoreCase(firstname)) {
+                Contact contactDetail = contact.get(i);
+                contact.remove(contactDetail);
+                System.out.println("Contact Deleted Successfully.!");
+            }
+        }
+    }
+
 }
