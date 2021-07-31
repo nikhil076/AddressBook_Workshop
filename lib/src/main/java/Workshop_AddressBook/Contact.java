@@ -87,5 +87,4 @@ public class Contact {
 		return "Contact [firstname=" + firstname + ", lastname=" + lastname + ", address=" + address + ", city=" + city
 				+ ", state=" + state + ", phoneNumber=" + phoneNumber + ", zipcode=" + zipcode + "]";
 	}
-
 }
