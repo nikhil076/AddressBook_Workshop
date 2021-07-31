@@ -3,6 +3,7 @@ package Workshop_AddressBook;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class AddressBook implements AddressBook_Interface {
 
@@ -106,4 +107,20 @@ public class AddressBook implements AddressBook_Interface {
         }
     }
 
+    /**
+     * Search a person in a city or state across the multiple AddressBook
+     *
+     * @param firstname
+     */
+    @Override
+    public void searchPersonByCity(String firstname) {
+        List<Contact> contactDetailList = contact.stream().filter(person1 -> person1.getFirstname().equalsIgnoreCase(firstname)).collect(Collectors.toList());
+        contactDetailList.stream().forEach(System.out::println);
+    }
+
+    @Override
+    public void searchPersonByState(String firstname) {
+        List<Contact> contactDetailList = contact.stream().filter(person1 -> person1.getFirstname().equalsIgnoreCase(firstname)).collect(Collectors.toList());
+        contactDetailList.stream().forEach(System.out::println);
+    }
 }
