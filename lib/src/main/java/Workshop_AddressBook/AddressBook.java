@@ -179,4 +179,11 @@ public class AddressBook implements AddressBook_Interface {
 			System.out.println(contactDetail);
 		}
 	}
+	
+	/**
+	 * display all the contacts according to their name in alphabetical order
+	 */
+	public void sortEntryInAddressBookAlphabeticallyByFirstName() {
+		System.out.println(addressBookMap.entrySet().stream().sorted(Map.Entry.comparingByKey()).collect(Collectors.toList()));
+	}
 }
