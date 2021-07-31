@@ -13,5 +13,9 @@ public class AddressBookMain {
 		System.out.println("Enter your firstname to Edit your details..");
         String firstname = input.next();
         addressBook.editContact(firstname);
+        
+        System.out.println("Enter your Firstname to delete your details :");
+        String firstName = input.next();
+        addressBook.deleteContact(firstName);
 	}
 }
