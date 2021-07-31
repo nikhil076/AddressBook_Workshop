@@ -20,6 +20,9 @@ public class AddressBook implements AddressBook_Interface {
 		System.out.println("Enter Lastname:");
 		String lastname = input.nextLine();
 
+		/**
+         * to check no duplicate firstname or lastname exists.
+         */
 		for (int check = 0; check < contact.size(); check++) {
 			if (contact.get(check).getFirstname().equalsIgnoreCase(firstname)) {
 				if (contact.get(check).getLastname().equalsIgnoreCase(lastname)) {
