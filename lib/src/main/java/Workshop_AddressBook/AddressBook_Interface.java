@@ -6,4 +6,6 @@ public interface AddressBook_Interface {
 	public void deleteContact(String firstname);
 	public void searchPersonByCity(String firstname);
     public void searchPersonByState(String firstname);
+    public void viewByCity(String city);
+    public  void viewByState(String state);
 }
