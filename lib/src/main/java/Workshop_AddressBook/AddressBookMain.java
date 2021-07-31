@@ -9,6 +9,7 @@ public class AddressBookMain {
 		System.out.println("Welcome to addressbook program");
 		AddressBook addressBook = new AddressBook();
 		addressBook.addContact();
+		
 		System.out.println("Enter your firstname to Edit your details..");
         String firstname = input.next();
         addressBook.editContact(firstname);
