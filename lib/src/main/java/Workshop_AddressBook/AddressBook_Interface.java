@@ -18,4 +18,6 @@ public interface AddressBook_Interface {
 	public void CountByCity(String City);
 	
 	public void display();
+	
+	public void sortEntryInAddressBookAlphabeticallyByFirstName();
 }
