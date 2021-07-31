@@ -25,8 +25,8 @@ public class AddressBook implements AddressBook_Interface {
 		String lastname = input.nextLine();
 
 		/**
-         * to check no duplicate firstname or lastname exists.
-         */
+		 * to check no duplicate firstname or lastname exists.
+		 */
 		for (int check = 0; check < contact.size(); check++) {
 			if (contact.get(check).getFirstname().equalsIgnoreCase(firstname)) {
 				if (contact.get(check).getLastname().equalsIgnoreCase(lastname)) {
@@ -94,57 +94,89 @@ public class AddressBook implements AddressBook_Interface {
 			}
 		}
 	}
-	
+
 	/**
-     *performing the operation for delete contact from the existing contact.
-     *
-     */
-    @Override
-    public void deleteContact(String firstname) {
-        for (int i = 0; i < contact.size(); i++) {
-            if(contact.get(i).getFirstname().equalsIgnoreCase(firstname)) {
-                Contact contactDetail = contact.get(i);
-                contact.remove(contactDetail);
-                System.out.println("Contact Deleted Successfully.!");
-            }
-        }
-    }
+	 * performing the operation for delete contact from the existing contact.
+	 *
+	 */
+	@Override
+	public void deleteContact(String firstname) {
+		for (int i = 0; i < contact.size(); i++) {
+			if (contact.get(i).getFirstname().equalsIgnoreCase(firstname)) {
+				Contact contactDetail = contact.get(i);
+				contact.remove(contactDetail);
+				System.out.println("Contact Deleted Successfully.!");
+			}
+		}
+	}
 
-    /**
-     * Search a person in a city or state across the multiple AddressBook
-     *
-     * @param firstname
-     */
-    @Override
-    public void searchPersonByCity(String firstname) {
-        List<Contact> contactDetailList = contact.stream().filter(person1 -> person1.getFirstname().equalsIgnoreCase(firstname)).collect(Collectors.toList());
-        contactDetailList.stream().forEach(System.out::println);
-    }
+	/**
+	 * Search a person in a city or state across the multiple AddressBook
+	 *
+	 * @param firstname
+	 */
+	@Override
+	public void searchPersonByCity(String firstname) {
+		List<Contact> contactDetailList = contact.stream()
+				.filter(person1 -> person1.getFirstname().equalsIgnoreCase(firstname)).collect(Collectors.toList());
+		contactDetailList.stream().forEach(System.out::println);
+	}
 
-    @Override
-    public void searchPersonByState(String firstname) {
-        List<Contact> contactDetailList = contact.stream().filter(person1 -> person1.getFirstname().equalsIgnoreCase(firstname)).collect(Collectors.toList());
-        contactDetailList.stream().forEach(System.out::println);
-    }
-    
-    /**
-     * View a person by city or state across the multiple AddressBook
-     *
-     * @param city and state
-     */
-    @Override
-    public void viewByCity(String city) {
-        List<Contact> contactDetailList = contact.stream().filter(person1 -> person1.getCity().equalsIgnoreCase(city)).collect(Collectors.toList());
-        contactDetailList.stream().forEach(System.out::println);
-        Map<String, Contact> map = contactDetailList.stream().collect(Collectors.toMap(Contact::getFirstname, contactDetail -> contactDetail));
-        System.out.println();
-    }
+	@Override
+	public void searchPersonByState(String firstname) {
+		List<Contact> contactDetailList = contact.stream()
+				.filter(person1 -> person1.getFirstname().equalsIgnoreCase(firstname)).collect(Collectors.toList());
+		contactDetailList.stream().forEach(System.out::println);
+	}
 
-    @Override
-    public void viewByState(String state) {
-        List<Contact> contactDetailList = contact.stream().filter(person1 -> person1.getState().equalsIgnoreCase(state)).collect(Collectors.toList());
-        contactDetailList.stream().forEach(System.out::println);
-        Map<String, Contact> map = contactDetailList.stream().collect(Collectors.toMap(Contact::getFirstname, contactDetail -> contactDetail));
-        System.out.println();
-    }
+	/**
+	 * View a person by city or state across the multiple AddressBook
+	 *
+	 * @param city and state
+	 */
+	@Override
+	public void viewByCity(String city) {
+		List<Contact> contactDetailList = contact.stream().filter(person1 -> person1.getCity().equalsIgnoreCase(city))
+				.collect(Collectors.toList());
+		contactDetailList.stream().forEach(System.out::println);
+		Map<String, Contact> map = contactDetailList.stream()
+				.collect(Collectors.toMap(Contact::getFirstname, contactDetail -> contactDetail));
+		System.out.println();
+	}
+
+	@Override
+	public void viewByState(String state) {
+		List<Contact> contactDetailList = contact.stream().filter(person1 -> person1.getState().equalsIgnoreCase(state))
+				.collect(Collectors.toList());
+		contactDetailList.stream().forEach(System.out::println);
+		Map<String, Contact> map = contactDetailList.stream()
+				.collect(Collectors.toMap(Contact::getFirstname, contactDetail -> contactDetail));
+		System.out.println();
+	}
+
+	/**
+	 * Count number of contact by city in the addressbook
+	 */
+	@Override
+	public void CountByCity(String City) {
+		int countPerson = 0;
+		for (Map.Entry<String, List<Contact>> entry : addressBookMap.entrySet()) {
+			for (int i = 0; i < contact.size(); i++) {
+				if (contact.get(i).getCity().equals(City)) {
+					System.out.println(contact.get(i));
+					countPerson = i;
+				}
+			}
+		}
+		System.out.println("Number of Person in" + City + "is" + countPerson);
+	}
+
+	/**
+	 * display all the contacts added to addressBook
+	 */
+	public void display() {
+		for (Contact contactDetail : contact) {
+			System.out.println(contactDetail);
+		}
+	}
 }
