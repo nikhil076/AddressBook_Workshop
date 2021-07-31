@@ -2,11 +2,14 @@ package Workshop_AddressBook;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
+import java.util.TreeMap;
 import java.util.stream.Collectors;
 
 public class AddressBook implements AddressBook_Interface {
 
+	private static Map<String, List<Contact>> addressBookMap = new TreeMap<>();
 	Scanner input = new Scanner(System.in);
 	List<Contact> contact = new ArrayList<>();
 
@@ -122,5 +125,26 @@ public class AddressBook implements AddressBook_Interface {
     public void searchPersonByState(String firstname) {
         List<Contact> contactDetailList = contact.stream().filter(person1 -> person1.getFirstname().equalsIgnoreCase(firstname)).collect(Collectors.toList());
         contactDetailList.stream().forEach(System.out::println);
+    }
+    
+    /**
+     * View a person by city or state across the multiple AddressBook
+     *
+     * @param city and state
+     */
+    @Override
+    public void viewByCity(String city) {
+        List<Contact> contactDetailList = contact.stream().filter(person1 -> person1.getCity().equalsIgnoreCase(city)).collect(Collectors.toList());
+        contactDetailList.stream().forEach(System.out::println);
+        Map<String, Contact> map = contactDetailList.stream().collect(Collectors.toMap(Contact::getFirstname, contactDetail -> contactDetail));
+        System.out.println();
+    }
+
+    @Override
+    public void viewByState(String state) {
+        List<Contact> contactDetailList = contact.stream().filter(person1 -> person1.getState().equalsIgnoreCase(state)).collect(Collectors.toList());
+        contactDetailList.stream().forEach(System.out::println);
+        Map<String, Contact> map = contactDetailList.stream().collect(Collectors.toMap(Contact::getFirstname, contactDetail -> contactDetail));
+        System.out.println();
     }
 }
