@@ -10,8 +10,8 @@ public class AddressBook implements AddressBook_Interface {
 	List<Contact> contact = new ArrayList<>();
 
 	/**
-     * To add contact of a person in Address Book.
-     */
+	 * To add contact of a person in Address Book.
+	 */
 	@Override
 	public void addContact() {
 		System.out.println("Enter Firstname:");
@@ -50,42 +50,41 @@ public class AddressBook implements AddressBook_Interface {
 				+ ", PhoneNumber=" + phoneNumber + ", zipcode=" + zipcode);
 		System.out.println("Contact Added Successfully");
 	}
-	
-	/**
-     * Performing the operation for edit contact for the existing contact.
-     *
-     * @param firstname
-     *
-     */
-	 @Override
-	    public void editContact(String firstname) {
-	        for (int i = 0; i < contact.size(); ++i) {
-	            if( contact.get(i).getFirstname().equalsIgnoreCase(firstname)) {
-	                Contact contactDetail = contact.get(i);
-	                System.out.println(contactDetail.getFirstname() + "Edit your detail :");
-	                System.out.println(contactDetail.getFirstname() + "Edit your Address :");
-	                input.next();
-	                String address = input.nextLine();
-	                contactDetail.setAddress(address);
-	                System.out.println( contactDetail.getFirstname() + " " + "Edit your city :");
-	                input.next();
-	                String city = input.nextLine();
-	                contactDetail.setCity(city);
-	                System.out.println( contactDetail.getFirstname() + " "  + "Edit your State :");
-	                input.next();
-	                String state = input.nextLine();
-	                contactDetail.setState(state);
-	                System.out.println( contactDetail.getFirstname() + " " + "Edit your Phone Number :");
-	                input.next();
-	                String phoneNumber = input.nextLine();
-	                contactDetail.setPhoneNumber(phoneNumber);
-	                System.out.println( contactDetail.getFirstname() + " " + "Edit your zipcode :");
-	                input.next();
-	                int zipcode = input.nextInt();
-	                contactDetail.setZipcode(zipcode);
-	                System.out.println( contactDetail.getFirstname() + " " + "AddressBook Updated Successfully.!");
-	            }
-	        }
-	    }
 
+	/**
+	 * Performing the operation for edit contact for the existing contact.
+	 *
+	 * @param firstname
+	 *
+	 */
+	@Override
+	public void editContact(String firstname) {
+		for (int i = 0; i < contact.size(); ++i) {
+			if (contact.get(i).getFirstname().equalsIgnoreCase(firstname)) {
+				Contact contactDetail = contact.get(i);
+				System.out.println(contactDetail.getFirstname() + "Edit your detail :");
+				System.out.println(contactDetail.getFirstname() + "Edit your Address :");
+				input.next();
+				String address = input.nextLine();
+				contactDetail.setAddress(address);
+				System.out.println(contactDetail.getFirstname() + " " + "Edit your city :");
+				input.next();
+				String city = input.nextLine();
+				contactDetail.setCity(city);
+				System.out.println(contactDetail.getFirstname() + " " + "Edit your State :");
+				input.next();
+				String state = input.nextLine();
+				contactDetail.setState(state);
+				System.out.println(contactDetail.getFirstname() + " " + "Edit your Phone Number :");
+				input.next();
+				String phoneNumber = input.nextLine();
+				contactDetail.setPhoneNumber(phoneNumber);
+				System.out.println(contactDetail.getFirstname() + " " + "Edit your zipcode :");
+				input.next();
+				int zipcode = input.nextInt();
+				contactDetail.setZipcode(zipcode);
+				System.out.println(contactDetail.getFirstname() + " " + "AddressBook Updated Successfully.!");
+			}
+		}
+	}
 }
