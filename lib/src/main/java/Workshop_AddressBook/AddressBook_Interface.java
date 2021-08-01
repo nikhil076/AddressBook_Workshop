@@ -20,4 +20,6 @@ public interface AddressBook_Interface {
 	public void display();
 	
 	public void sortEntryInAddressBookAlphabeticallyByFirstName();
+	
+	public void sortAccordingToCityStateOrZip();
 }
