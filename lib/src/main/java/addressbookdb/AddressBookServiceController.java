@@ -32,4 +32,27 @@ public class AddressBookServiceController {
 			}
 		}
 	}
+
+	// updates phone details of contact
+	public void updatePhoneContact(IOService ioService, String firstName, String lastName, Long phone) {
+		Contact contact = getContact(firstName, lastName);
+		if (ioService.equals(IOService.DB_IO)) {
+			try {
+				AddressBookDBService.getInstance().updateContactPhoneInAddressBook(firstName, lastName, phone);
+			} catch (AddressBookException e) {
+				e.printStackTrace();
+			}
+			if (contact != null)
+				contact.setPhoneNo(phone);
+		}
+		if (ioService.equals(IOService.REST_IO) && contact != null)
+			contact.setPhoneNo(phone);
+	}
+
+	// returns contact by name
+	public Contact getContact(String firstName, String lastName) {
+		return contactList.stream()
+				.filter(con -> con.getFirstName().equals(firstName) && con.getLastName().equals(lastName)).findFirst()
+				.orElse(null);
+	}
 }
