@@ -79,22 +79,53 @@ public class AddressBookDBService {
 			throw new AddressBookException(e.getMessage());
 		}
 	}
-	
+
 	// returns the list of contacts added in particular period
-		public List<Contact> getContactsAddedInParticularPeriod(LocalDate start, LocalDate end)
-				throws AddressBookException {
-			List<Contact> contactList = new ArrayList<>();
-			try (Connection con = (Connection) DatabaseConnector.getConnection()) {
-				String query = "select * from contact where date_added between ? and ?";
-				PreparedStatement conStatement = (PreparedStatement) con.prepareStatement(query);
-				conStatement.setDate(1, Date.valueOf(start));
-				conStatement.setDate(2, Date.valueOf(end));
-				ResultSet resultSet = conStatement.executeQuery();
-				contactList = getDataInDB(resultSet);
-			} catch (SQLException e) {
-				throw new AddressBookException(e.getMessage());
-			}
-			return contactList;
+	public List<Contact> getContactsAddedInParticularPeriod(LocalDate start, LocalDate end)
+			throws AddressBookException {
+		List<Contact> contactList = new ArrayList<>();
+		try (Connection con = (Connection) DatabaseConnector.getConnection()) {
+			String query = "select * from contact where date_added between ? and ?";
+			PreparedStatement conStatement = (PreparedStatement) con.prepareStatement(query);
+			conStatement.setDate(1, Date.valueOf(start));
+			conStatement.setDate(2, Date.valueOf(end));
+			ResultSet resultSet = conStatement.executeQuery();
+			contactList = getDataInDB(resultSet);
+		} catch (SQLException e) {
+			throw new AddressBookException(e.getMessage());
 		}
-	
+		return contactList;
+	}
+
+	// returns the count of contacts present in a city
+	public long getContactsByCity(String city) throws AddressBookException {
+		long count = 0l;
+		try (Connection con = (Connection) DatabaseConnector.getConnection()) {
+			String query = "select count(contact_id) from contact where city=?";
+			PreparedStatement conStatement = (PreparedStatement) con.prepareStatement(query);
+			conStatement.setString(1, city);
+			ResultSet resultSet = conStatement.executeQuery();
+			if (resultSet.next())
+				count = resultSet.getLong(1);
+		} catch (SQLException e) {
+			throw new AddressBookException(e.getMessage());
+		}
+		return count;
+	}
+
+	// returns the count of contacts present in a state
+	public long getContactsByState(String state) throws AddressBookException {
+		long count = 0l;
+		try (Connection con = (Connection) DatabaseConnector.getConnection()) {
+			String query = "select count(contact_id) from contact where state=?";
+			PreparedStatement conStatement = (PreparedStatement) con.prepareStatement(query);
+			conStatement.setString(1, state);
+			ResultSet resultSet = conStatement.executeQuery();
+			if (resultSet.next())
+				count = resultSet.getLong(1);
+		} catch (SQLException e) {
+			throw new AddressBookException(e.getMessage());
+		}
+		return count;
+	}
 }
