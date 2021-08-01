@@ -1,4 +1,5 @@
 package dbtest;
+
 import static org.junit.Assert.assertEquals;
 
 import org.junit.BeforeClass;
