@@ -24,7 +24,7 @@ public class AddressBookServiceController {
 		contactList.stream().forEach(con -> this.contactList.add(con));
 	}
 
-	// reads details from database or json server and stores to cntactList
+	// reads details from database 
 	public void readContacts(IOService ioService) {
 		if (ioService.equals(IOService.DB_IO)) {
 			try {
@@ -87,4 +87,19 @@ public class AddressBookServiceController {
 		}
 		return 0l;
 	}
+	
+	// add contacts to database
+		public boolean addContact(Contact contact, IOService ioService) {
+			if (ioService.equals(IOService.DB_IO)) {
+				try {
+					if (AddressBookDBService.getInstance().addContact(contact)) {
+						contactList.add(contact);
+						return true;
+					}
+				} catch (AddressBookException e) {
+					e.printStackTrace();
+				}
+			}
+			return false;
+		}
 }
