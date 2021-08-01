@@ -16,10 +16,10 @@ public interface AddressBook_Interface {
 	public void viewByState(String state);
 
 	public void CountByCity(String City);
-	
+
 	public void display();
-	
+
 	public void sortEntryInAddressBookAlphabeticallyByFirstName();
-	
+
 	public void sortAccordingToCityStateOrZip();
 }
