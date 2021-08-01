@@ -17,5 +17,9 @@ public class AddressBookMain {
 		} catch (CsvException e) {
 			e.printStackTrace();
 		}
+		
+		AddressBookJSON addressBookJSON = new AddressBookJSON();
+		addressBookJSON.readaddressBookFromAJSONFile("C:\\Users\\Nikhil Arvind\\Batch307\\Workshop_AddressBook\\lib\\src\\main\\resources\\contact.json");
+		addressBookJSON.writeContactDetailsInAFile("C:\\\\Users\\\\Nikhil Arvind\\\\Batch307\\\\Workshop_AddressBook\\\\lib\\\\src\\\\main\\\\resources\\\\ContactBook.json");
 	}
 }
