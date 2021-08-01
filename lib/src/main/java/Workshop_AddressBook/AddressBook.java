@@ -186,4 +186,12 @@ public class AddressBook implements AddressBook_Interface {
 	public void sortEntryInAddressBookAlphabeticallyByFirstName() {
 		System.out.println(addressBookMap.entrySet().stream().sorted(Map.Entry.comparingByKey()).collect(Collectors.toList()));
 	}
+	
+	private static void sortAccordingToCityStateOrZip()
+	{
+		List<Contact> contactDetailList = addressBookMap.stream().filter(person1 -> person1.getCity().equalsIgnoreCase(city)).collect(Collectors.toList());
+        contactDetailList.stream().forEach(System.out::println);
+        Map<String, Contact> map = contactDetailList.stream().collect(Collectors.toMap(Contact::getFirst, contactDetail -> contactDetail));
+        System.out.println();	
+    }
 }
