@@ -21,7 +21,7 @@ public class Contact {
 	public Contact() {
 	}
 
-	// parameter constructor
+	// parameter constructor 
 	public Contact(String firstName, String lastName, String address, String city, String state, int zipCode,
 			long phoneNo, String email) {
 		this.firstName = firstName;
