@@ -41,25 +41,25 @@ public class AddressBookDBService {
 	}
 
 	// returns list of contacts present in result-set for a query retrieved from DB
-		private List<Contact> getDataInDB(ResultSet resultSet) throws AddressBookException {
-			List<Contact> contactList = new ArrayList<>();
-			try {
-				while (resultSet.next()) {
-					String firstName = resultSet.getString("first_name");
-					String lastName = resultSet.getString("last_name");
-					String address = resultSet.getString("address");
-					String city = resultSet.getString("city");
-					String state = resultSet.getString("state");
-					Integer zipCode = resultSet.getInt("zip");
-					Long phoneNo = resultSet.getLong("phone_no");
-					String email = resultSet.getString("email_id");
-					Integer contactId = resultSet.getInt("contact_id");
-					contactList.add(
-							new Contact(firstName, lastName, address, city, state, zipCode, phoneNo, email, contactId));
-				}
-			} catch (SQLException e) {
-				throw new AddressBookException(e.getMessage());
+	private List<Contact> getDataInDB(ResultSet resultSet) throws AddressBookException {
+		List<Contact> contactList = new ArrayList<>();
+		try {
+			while (resultSet.next()) {
+				String firstName = resultSet.getString("first_name");
+				String lastName = resultSet.getString("last_name");
+				String address = resultSet.getString("address");
+				String city = resultSet.getString("city");
+				String state = resultSet.getString("state");
+				Integer zipCode = resultSet.getInt("zip");
+				Long phoneNo = resultSet.getLong("phone_no");
+				String email = resultSet.getString("email_id");
+				Integer contactId = resultSet.getInt("contact_id");
+				contactList.add(
+						new Contact(firstName, lastName, address, city, state, zipCode, phoneNo, email, contactId));
 			}
-			return contactList;
+		} catch (SQLException e) {
+			throw new AddressBookException(e.getMessage());
 		}
+		return contactList;
+	}
 }
