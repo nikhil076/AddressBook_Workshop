@@ -57,4 +57,16 @@ public class AddressBookDBTest {
 		Long count = addressBookDBController.getContactsByStateFromDB("Odisha");
 		assertEquals(Long.valueOf(2), count);
 	}
+	
+	@Test
+	public void test6_givenContact_WhenAddedToDB_ShouldBeInSyncWithDB() {
+		Contact expectedContact = new Contact("sashi", "bhaskar", "new-bombay", "mumbai", "maharashtra", 400006,
+				7788996655l, "sashi@yahoo.com", LocalDate.now(), "1", "2");
+		Contact actualContact = null;
+		addressBookDBController.addContact(expectedContact, IOService.DB_IO);
+		actualContact = addressBookDBController.contactList.stream()
+				.filter(con -> con.getFirstName().equals("sashi") && con.getLastName().equals("bhaskar")).findFirst()
+				.orElse(null);
+		assertEquals(expectedContact, actualContact);
+	}
 }
