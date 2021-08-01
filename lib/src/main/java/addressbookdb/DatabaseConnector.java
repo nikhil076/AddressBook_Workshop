@@ -10,7 +10,7 @@ public class DatabaseConnector {
 
 	private static Connection con = null;
 
-	// connects to the payroll_service database
+	// connects to the payroll_service database 
 	public static Connection getConnection() throws AddressBookException {
 		String url = "jdbc:mysql://localhost:3306/addressbook_service";
 		String user = "root";
