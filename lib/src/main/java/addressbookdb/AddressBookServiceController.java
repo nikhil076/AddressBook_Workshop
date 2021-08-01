@@ -22,7 +22,7 @@ public class AddressBookServiceController {
 		contactList.stream().forEach(con -> this.contactList.add(con));
 	}
 
-	// reads details from database or json server and stores to cntactList
+	// reads details from database
 	public void readContacts(IOService ioService) {
 		if (ioService.equals(IOService.DB_IO)) {
 			try {
