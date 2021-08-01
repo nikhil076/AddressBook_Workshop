@@ -1,6 +1,8 @@
 package addressbookdb;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import AddressBookException.AddressBookException;
@@ -54,5 +56,15 @@ public class AddressBookServiceController {
 		return contactList.stream()
 				.filter(con -> con.getFirstName().equals(firstName) && con.getLastName().equals(lastName)).findFirst()
 				.orElse(null);
+	}
+
+	// returns list of contacts added in particular period
+	public List<Contact> getContactsAddedInParticularPeriodFromDB(LocalDate start, LocalDate end) {
+		try {
+			return AddressBookDBService.getInstance().getContactsAddedInParticularPeriod(start, end);
+		} catch (AddressBookException e) {
+			e.printStackTrace();
+		}
+		return Collections.emptyList();
 	}
 }

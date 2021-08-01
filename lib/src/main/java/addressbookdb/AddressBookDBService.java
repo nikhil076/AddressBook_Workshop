@@ -1,7 +1,9 @@
 package addressbookdb;
 
 import java.sql.ResultSet;
+import java.sql.Date;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -77,4 +79,22 @@ public class AddressBookDBService {
 			throw new AddressBookException(e.getMessage());
 		}
 	}
+	
+	// returns the list of contacts added in particular period
+		public List<Contact> getContactsAddedInParticularPeriod(LocalDate start, LocalDate end)
+				throws AddressBookException {
+			List<Contact> contactList = new ArrayList<>();
+			try (Connection con = (Connection) DatabaseConnector.getConnection()) {
+				String query = "select * from contact where date_added between ? and ?";
+				PreparedStatement conStatement = (PreparedStatement) con.prepareStatement(query);
+				conStatement.setDate(1, Date.valueOf(start));
+				conStatement.setDate(2, Date.valueOf(end));
+				ResultSet resultSet = conStatement.executeQuery();
+				contactList = getDataInDB(resultSet);
+			} catch (SQLException e) {
+				throw new AddressBookException(e.getMessage());
+			}
+			return contactList;
+		}
+	
 }
